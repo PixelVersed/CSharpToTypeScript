@@ -1,12 +1,6 @@
-namespace CSharpToTypeScript.Core.Models.TypeNodes
-{
-    internal abstract class NamedTypeNode : TypeNode
-    {
-        protected NamedTypeNode(string name)
-        {
-            Name = name;
-        }
+namespace CSharpToTypeScript.Core.Models.TypeNodes;
 
-        public string Name { get; }
-    }
+internal abstract class NamedTypeNode(string name) : TypeNode
+{
+    public string Name { get; } = name;
 }

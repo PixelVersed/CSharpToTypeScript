@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
+namespace CSharpToTypeScript.CLITool.Utilities;
 
-namespace CSharpToTypeScript.CLITool.Utilities
+public static class ExceptionMessage
 {
-    public static class ExceptionMessage
+    public static IEnumerable<string?> Flatten(Exception? exception)
     {
-        public static IEnumerable<string> Flatten(Exception exception)
+        do
         {
-            do
-            {
-                yield return exception.Message;
-                exception = exception.InnerException;
-            } while (!(exception is null));
-        }
+            yield return exception?.Message;
+            exception = exception?.InnerException;
+        } while (exception != null);
     }
 }

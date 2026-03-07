@@ -1,8 +1,7 @@
-namespace CSharpToTypeScript.Core.Options
+namespace CSharpToTypeScript.Core.Options;
+
+public enum ImportGenerationMode
 {
-    public enum ImportGenerationMode
-    {
-        None,
-        Simple
-    }
+    None,
+    Simple
 }

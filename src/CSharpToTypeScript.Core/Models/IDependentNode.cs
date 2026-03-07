@@ -1,9 +1,6 @@
-using System.Collections.Generic;
+namespace CSharpToTypeScript.Core.Models;
 
-namespace CSharpToTypeScript.Core.Models
+public interface IDependentNode
 {
-    public interface IDependentNode
-    {
-        IEnumerable<string> Requires { get; }
-    }
+    IEnumerable<string> Requires { get; }
 }

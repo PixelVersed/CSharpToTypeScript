@@ -1,9 +1,8 @@
 using CSharpToTypeScript.Core.Options;
 
-namespace CSharpToTypeScript.Core.Services
+namespace CSharpToTypeScript.Core.Services;
+
+public interface ICodeConverter
 {
-    public interface ICodeConverter
-    {
-        string ConvertToTypeScript(string code, CodeConversionOptions options);
-    }
+    string ConvertToTypeScript(string code, CodeConversionOptions options);
 }

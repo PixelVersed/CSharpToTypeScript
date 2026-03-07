@@ -1,8 +1,7 @@
-namespace CSharpToTypeScript.Core.Options
+namespace CSharpToTypeScript.Core.Options;
+
+public enum OutputType
 {
-    public enum OutputType
-    {
-        Interface,
-        Class
-    }
+    Interface,
+    Class
 }

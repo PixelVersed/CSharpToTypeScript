@@ -1,31 +1,25 @@
-using System.Linq;
 using CSharpToTypeScript.Core.Models.TypeNodes;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Nullable = CSharpToTypeScript.Core.Models.TypeNodes.Nullable;
 
-namespace CSharpToTypeScript.Core.Services.TypeConversionHandlers
+namespace CSharpToTypeScript.Core.Services.TypeConversionHandlers;
+
+internal class NullableConverter(TypeConversionHandler converter) : TypeConversionHandler
 {
-    internal class NullableConverter : TypeConversionHandler
+    private readonly TypeConversionHandler _converter = converter;
+
+    public override TypeNode Handle(TypeSyntax type)
     {
-        private readonly TypeConversionHandler _converter;
-
-        public NullableConverter(TypeConversionHandler converter)
+        if (type is NullableTypeSyntax nullable)
         {
-            _converter = converter;
+            return new Nullable(of: _converter.Handle(nullable.ElementType));
+        }
+        else if (type is GenericNameSyntax generic && generic.Identifier.Text == nameof(System.Nullable)
+            && generic.TypeArgumentList.Arguments.Count == 1)
+        {
+            return new Nullable(of: _converter.Handle(generic.TypeArgumentList.Arguments.Single()));
         }
 
-        public override TypeNode Handle(TypeSyntax type)
-        {
-            if (type is NullableTypeSyntax nullable)
-            {
-                return new Nullable(of: _converter.Handle(nullable.ElementType));
-            }
-            else if (type is GenericNameSyntax generic && generic.Identifier.Text == nameof(System.Nullable)
-                && generic.TypeArgumentList.Arguments.Count == 1)
-            {
-                return new Nullable(of: _converter.Handle(generic.TypeArgumentList.Arguments.Single()));
-            }
-
-            return base.Handle(type);
-        }
+        return base.Handle(type);
     }
 }

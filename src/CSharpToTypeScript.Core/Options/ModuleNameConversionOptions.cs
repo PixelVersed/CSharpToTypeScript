@@ -1,16 +1,8 @@
-namespace CSharpToTypeScript.Core.Options
-{
-    public class ModuleNameConversionOptions
-    {
-        public ModuleNameConversionOptions(bool useKebabCase, bool appendModelSuffix, bool removeInterfacePrefix = true)
-        {
-            UseKebabCase = useKebabCase;
-            AppendModelSuffix = appendModelSuffix;
-            RemoveInterfacePrefix = removeInterfacePrefix;
-        }
+namespace CSharpToTypeScript.Core.Options;
 
-        public bool UseKebabCase { get; set; }
-        public bool AppendModelSuffix { get; set; }
-        public bool RemoveInterfacePrefix { get; set; }
-    }
+public class ModuleNameConversionOptions(bool useKebabCase, bool appendModelSuffix, bool removeInterfacePrefix = true)
+{
+    public bool UseKebabCase { get; set; } = useKebabCase;
+    public bool AppendModelSuffix { get; set; } = appendModelSuffix;
+    public bool RemoveInterfacePrefix { get; set; } = removeInterfacePrefix;
 }

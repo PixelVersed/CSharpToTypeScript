@@ -1,9 +1,8 @@
 using CSharpToTypeScript.Core.Options;
 
-namespace CSharpToTypeScript.Core.Models
+namespace CSharpToTypeScript.Core.Models;
+
+public interface IWritableNode
 {
-    public interface IWritableNode
-    {
-        string WriteTypeScript(CodeConversionOptions options, Context context);
-    }
+    string WriteTypeScript(CodeConversionOptions options, Context context);
 }

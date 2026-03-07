@@ -1,28 +1,21 @@
-using System.Linq;
 using CSharpToTypeScript.Core.Models.TypeNodes;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace CSharpToTypeScript.Core.Services.TypeConversionHandlers
+namespace CSharpToTypeScript.Core.Services.TypeConversionHandlers;
+
+internal class GenericConverter(TypeConversionHandler converter) : TypeConversionHandler
 {
-    internal class GenericConverter : TypeConversionHandler
+    private readonly TypeConversionHandler _converter = converter;
+
+    public override TypeNode Handle(TypeSyntax type)
     {
-        private readonly TypeConversionHandler _converter;
-
-        public GenericConverter(TypeConversionHandler converter)
+        if (type is GenericNameSyntax generic && !string.IsNullOrWhiteSpace(generic.Identifier.Text))
         {
-            _converter = converter;
+            return new Generic(
+                name: generic.Identifier.Text,
+                arguments: generic.TypeArgumentList.Arguments.Select(_converter.Handle));
         }
 
-        public override TypeNode Handle(TypeSyntax type)
-        {
-            if (type is GenericNameSyntax generic && !string.IsNullOrWhiteSpace(generic.Identifier.Text))
-            {
-                return new Generic(
-                    name: generic.Identifier.Text,
-                    arguments: generic.TypeArgumentList.Arguments.Select(_converter.Handle));
-            }
-
-            return base.Handle(type);
-        }
+        return base.Handle(type);
     }
 }

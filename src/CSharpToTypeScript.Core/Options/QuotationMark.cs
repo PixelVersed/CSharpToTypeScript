@@ -1,8 +1,7 @@
-namespace CSharpToTypeScript.Core.Options
+namespace CSharpToTypeScript.Core.Options;
+
+public enum QuotationMark
 {
-    public enum QuotationMark
-    {
-        Double,
-        Single
-    }
+    Double,
+    Single
 }

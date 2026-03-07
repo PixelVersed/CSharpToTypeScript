@@ -1,9 +1,8 @@
-namespace CSharpToTypeScript.Core.Options
+namespace CSharpToTypeScript.Core.Options;
+
+public enum DateOutputType
 {
-    public enum DateOutputType
-    {
-        String,
-        Date,
-        Union
-    }
+    String,
+    Date,
+    Union
 }

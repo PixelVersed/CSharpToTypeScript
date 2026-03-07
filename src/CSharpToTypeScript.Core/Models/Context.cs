@@ -1,11 +1,8 @@
-using System.Collections.Generic;
+namespace CSharpToTypeScript.Core.Models;
 
-namespace CSharpToTypeScript.Core.Models
+public class Context
 {
-    public class Context
-    {
-        public IEnumerable<string> GenericTypeParameters { get; set; }
+    public IEnumerable<string>? GenericTypeParameters { get; set; }
 
-        public Context Clone() => (Context)MemberwiseClone();
-    }
+    public Context Clone() => (Context)MemberwiseClone();
 }

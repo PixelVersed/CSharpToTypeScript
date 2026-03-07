@@ -1,27 +1,20 @@
 using CSharpToTypeScript.Core.Options;
 using CSharpToTypeScript.Core.Utilities;
 
-namespace CSharpToTypeScript.Core.Models
+namespace CSharpToTypeScript.Core.Models;
+
+internal class EnumMemberNode(string name, string? value) : IWritableNode
 {
-    internal class EnumMemberNode : IWritableNode
+    public string Name { get; } = name;
+    public string? Value { get; } = value;
+
+    public string WriteTypeScript(CodeConversionOptions options, Context context)
     {
-        public EnumMemberNode(string name, string value)
-        {
-            Name = name;
-            Value = value;
-        }
+        var value = options.StringEnums
+            ? Name.TransformIf(options.EnumStringToCamelCase, StringUtilities.ToCamelCase)
+                  .InQuotes(options.QuotationMark)
+            : Value?.SquashWhiteSpace();
 
-        public string Name { get; }
-        public string Value { get; }
-
-        public string WriteTypeScript(CodeConversionOptions options, Context context)
-        {
-            var value = options.StringEnums
-                ? Name.TransformIf(options.EnumStringToCamelCase, StringUtilities.ToCamelCase)
-                      .InQuotes(options.QuotationMark)
-                : Value?.SquashWhistespace();
-
-            return Name + (" = " + value).If(!string.IsNullOrWhiteSpace(value));
-        }
+        return Name + (" = " + value).If(!string.IsNullOrWhiteSpace(value));
     }
 }

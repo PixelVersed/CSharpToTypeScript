@@ -1,8 +1,7 @@
-namespace CSharpToTypeScript.Core.Options
+namespace CSharpToTypeScript.Core.Options;
+
+public enum NullableOutputType
 {
-    public enum NullableOutputType
-    {
-        Null,
-        Undefined
-    }
+    Null,
+    Undefined
 }

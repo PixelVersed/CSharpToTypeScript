@@ -1,7 +1,6 @@
-namespace CSharpToTypeScript.Core.Services
+namespace CSharpToTypeScript.Core.Services;
+
+public interface IFileNameConverter
 {
-    public interface IFileNameConverter
-    {
-        string ConvertToTypeScript(string fileName, Options.ModuleNameConversionOptions options);
-    }
+    string ConvertToTypeScript(string fileName, Options.ModuleNameConversionOptions options);
 }

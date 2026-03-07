@@ -1,9 +1,8 @@
 using CSharpToTypeScript.Core.Options;
 
-namespace CSharpToTypeScript.Core.Models.TypeNodes
+namespace CSharpToTypeScript.Core.Models.TypeNodes;
+
+internal class Boolean : TypeNode
 {
-    internal class Boolean : TypeNode
-    {
-        public override string WriteTypeScript(CodeConversionOptions options, Context context) => "boolean";
-    }
+    public override string WriteTypeScript(CodeConversionOptions options, Context context) => "boolean";
 }
